@@ -1,0 +1,33 @@
+// a version of BinarySearch Tree
+
+class Node:
+    def __init__(self, key):
+        self.val = key
+        self.left = None
+        self.right = None
+
+// insert new nodes
+def insert(root, key):
+    if root is None:
+        return Node(key)
+    else:
+        if root.val < key:
+            root.right = insert(root.right, key)
+        else:
+            root.left = insert(root.left, key)
+    return root
+
+// traverse the binary tree in order and print values
+def traverse(root):
+    if root:
+        traverse(root.left)
+        print(root.val, end=" ")
+        traverse(root.right)
+
+// search for a specific value
+def search(root, key):
+    if root is None or root.val == key:
+        return root
+    if root.val < key:
+        return search(root.right, key)
+    return search(root.left, key)
